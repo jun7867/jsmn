@@ -1,0 +1,977 @@
+[33mcommit 61981fae82a615f9bd465e8c728e4fba4d313959[m
+Author: jun7867 <jjune095@naver.com>
+Date:   Fri Apr 6 17:30:26 2018 +0900
+
+    add myexample target
+
+[33mcommit 732d283ee9a2e5c34c52af0e044850576888ab09[m
+Merge: 6784c82 f38f267
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Feb 12 09:40:59 2018 +0200
+
+    Merge pull request #126 from abalkin/patch-1
+    
+    Fixed two typos in a comment.
+
+[33mcommit f38f267b62cee4cde1d8e245ce6acc642cb2bf91[m
+Author: Alexander Belopolsky <abalkin@users.noreply.github.com>
+Date:   Sat Feb 10 19:22:23 2018 -0500
+
+    Fixed two typos in a comment.
+
+[33mcommit 6784c826d9674915a4d89649c6288e6aecb4110d[m
+Merge: 3508659 f276e23
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Jan 25 22:49:10 2018 +0200
+
+    Merge pull request #123 from drbitboy/btc/typos
+    
+    btc/typos - JSON_ERROR_... should be JSMN_ERROR_... in README.md
+
+[33mcommit f276e23a74f6a2f4342cf2094d99d869408512e9[m
+Author: Brian Carcich <brian.carcich@kinetx.com>
+Date:   Thu Jan 25 15:38:16 2018 -0500
+
+    btc/typos - JSON_ERROR_... should be JSMN_ERROR_... in README.md
+
+[33mcommit 35086597a72d94d8393e6a90b96e553d714085bd[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon May 1 11:44:07 2017 +0300
+
+    added travis badge
+
+[33mcommit fe296583c010821db38748a5dc0eeb4a0a0ce8e1[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon May 1 11:42:48 2017 +0300
+
+    added travis.yml
+
+[33mcommit c772a0e48b9e0ce41de80743c99696880a7de4f3[m
+Merge: 1682c32 6572217
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sun Apr 30 22:43:06 2017 +0300
+
+    Merge pull request #99 from prubel/strict-unmatched-brackets-test-fix
+    
+    strict checking fails a test, add {}s to fix it
+
+[33mcommit 6572217a0e71fdc13c9ea5571203187f383665e0[m
+Author: Paul Rubel <prubel@akamai.com>
+Date:   Tue Dec 13 15:23:23 2016 -0500
+
+    strict checking fails a test, add {}s to fix it
+    
+    The current test looks for success, but since there are
+    no surrounding {}s the test fails. Add them in and add
+    a test like the one that we replace but only in the
+    non-strict code path.
+
+[33mcommit 1682c32e9ae5990ddd0f0e907270a0f6dde5cbe9[m
+Merge: 0f574ea c3131d0
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Wed Oct 12 17:09:07 2016 +0800
+
+    Merge pull request #94 from pt300/master
+    
+    Fix for no error with unmatched closing bracket with PARENT_LINKS
+
+[33mcommit 0f574ea35becadb10f302795a5ffbc0b8bda8934[m
+Merge: 6021415 f40811c
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Oct 6 17:38:02 2016 +0800
+
+    Merge pull request #95 from crondaemon/doc-fix
+    
+    Fix issue in documentation.
+
+[33mcommit f40811c4ded512135cdf18494ade5e706f01cb6e[m
+Author: Dario Lombardo <lomato@gmail.com>
+Date:   Thu Oct 6 10:29:35 2016 +0200
+
+    Fix issue in documentation.
+
+[33mcommit c3131d05a6db72c1ddefb1ad4c95ddbc604d1fa6[m
+Author: pt300 <pt300@tlen.pl>
+Date:   Sun Oct 2 10:37:29 2016 +0200
+
+    Changed unmatched bracket tests
+
+[33mcommit adae9457cfac9f8b9eae2055af197109ddd563f1[m
+Merge: 4ce4404 a01d301
+Author: Pat <pt300@tlen.pl>
+Date:   Sun Oct 2 09:48:27 2016 +0200
+
+    Merge pull request #1 from zlolik/master
+    
+    some tests for unmatched brackets added
+
+[33mcommit a01d301373595892e2e5ff77dd4e7715f7897f11[m
+Author: zlolik <lolikandr@gmail.com>
+Date:   Sun Oct 2 07:51:52 2016 +0300
+
+    some tests for unmatched brackets added
+
+[33mcommit 4ce44040579e65755d14a3d7dabdae0913959a24[m
+Author: pt300 <pt300@tlen.pl>
+Date:   Sat Oct 1 18:19:20 2016 +0200
+
+    Seems to actually fix zserge/jsmn#81
+
+[33mcommit ad72aac67ab84280cbd7e08b2668ef7fe5db046e[m
+Author: pt300 <pt300@tlen.pl>
+Date:   Sat Oct 1 18:07:35 2016 +0200
+
+    Partialy fixes zserge/jsmn#81
+    Still will report invalid amount if we fetch it with something like "{"key 1": 1234}}"
+
+[33mcommit 6021415cc75e7922d45b12935f56348b064d8a7f[m
+Merge: 452c926 b80578c
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Wed Aug 10 10:40:39 2016 +0800
+
+    Merge pull request #87 from RyDroid/make
+    
+    Very minor changes to Makefile
+
+[33mcommit 452c926709f130e0364ce02dc19a49956396baae[m
+Merge: d1c85c5 e42bcbb
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Wed Aug 10 10:40:26 2016 +0800
+
+    Merge pull request #88 from RyDroid/minor-c
+    
+    Very minor changes to C source code
+
+[33mcommit b80578ce0893f67e60c5daffa9b5d21a7c978cef[m
+Author: Nicola Spanti (RyDroid) <dev@nicola-spanti.info>
+Date:   Mon Aug 8 16:05:12 2016 +0200
+
+    Very minor changes to Makefile
+
+[33mcommit e42bcbbada01199e00be7576fd2fda69f04b8bd7[m
+Author: Nicola Spanti (RyDroid) <dev@nicola-spanti.info>
+Date:   Mon Aug 8 15:54:56 2016 +0200
+
+    Very minor changes to C source code
+
+[33mcommit d1c85c569d11b8f014858982d5744b5139c52cc1[m
+Merge: bbc6755 37672b0
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jun 13 01:12:23 2016 -0500
+
+    Merge pull request #79 from ferambot/master
+    
+    Minor fixes
+
+[33mcommit 37672b0289b076de40b888042e629ed794663ee9[m
+Author: Feram <feram@feram.co>
+Date:   Mon Jun 13 06:10:46 2016 +0000
+
+    Fix typos
+
+[33mcommit bbc6755fce14c713f9bb4ba47c688d15efc1394b[m
+Merge: b77d84b e3f2629
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Apr 2 03:10:43 2016 -0500
+
+    Merge pull request #76 from simonsj/master
+    
+    tests: fix test_object JSMN_PRIMITIVE bug
+
+[33mcommit e3f2629a562c260fc3fe3d69576cd7b06f3a3760[m
+Author: Jon Simons <jon@jonsimons.org>
+Date:   Fri Apr 1 19:59:14 2016 -0700
+
+    tests: fix test_object JSMN_PRIMITIVE bug
+    
+    Specify the argument after JSMN_PRIMITIVE as "0" instead of 0 so
+    that weird things don't happen on OSX due to using it later with
+    `va_arg(..., char *)` in `vtokeq`.
+
+[33mcommit b77d84ba48e057aa464b6c6b6f6209e632918cb3[m
+Merge: 572ace5 76c9448
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Mar 28 06:10:47 2016 -0500
+
+    Merge pull request #75 from condemned77/master
+    
+    Typo fix.
+
+[33mcommit 76c9448ca8aceb7edeff63506708b9d272440a05[m
+Author: condemned77 <michael.jaeg@gmail.com>
+Date:   Mon Mar 28 12:28:36 2016 +0200
+
+    Typo fix.
+    
+    Minor typo fixed.
+
+[33mcommit 572ace5a43c43b1c6dc55f31fab03718faf2f647[m
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Wed Jan 20 17:28:15 2016 +0800
+
+    Update README.md
+
+[33mcommit 09843be91240b8200568609819fbf308622d18f1[m
+Merge: 78b1dca 86d5957
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Tue Jan 19 23:00:50 2016 +0800
+
+    Merge pull request #66 from ivankravets/patch-1
+    
+    @PlatformIO Library Registry manifest file
+
+[33mcommit 86d595729cd0e1d2dd82f3fa1da6443c6b212c59[m
+Author: Ivan Kravets <me@ikravets.com>
+Date:   Tue Jan 19 16:34:12 2016 +0200
+
+    @PlatformIO Library Registry manifest file
+    
+    * This library in Web Registry: http://platformio.org/#!/lib/show/568/jsmn
+    * Specification: [library.json](http://docs.platformio.org/en/latest/librarymanager/config.html)
+    * Library Manager:  http://docs.platformio.org/en/latest/librarymanager/index.html
+
+[33mcommit 78b1dca33423fe1a2912fab1e815d785cd36af95[m
+Merge: 4a54ae6 b7845b4
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Wed Jan 13 19:20:44 2016 +0800
+
+    Merge pull request #65 from Smattr/02ab7ac3-79ee-4541-a80a-230e2ceae1dd
+    
+    Fix trivial comment typo.
+
+[33mcommit b7845b4ea43b71829e802982235c9988960a589d[m
+Author: Matthew Fernandez <matthew.fernandez@nicta.com.au>
+Date:   Wed Jan 13 21:45:00 2016 +1100
+
+    Fix trivial comment typo.
+
+[33mcommit 4a54ae6987a37ca3734ac1e9ab6b7f1f44e2712d[m
+Merge: fdceddf e4d526a
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Dec 14 23:04:37 2015 +0800
+
+    Merge pull request #62 from baskerville/master
+    
+    Fix deheader warnings
+
+[33mcommit e4d526a4033c4548dc3f9ade2ec14ff87b9455ea[m
+Author: Bastien Dejean <nihilhill@gmail.com>
+Date:   Mon Dec 14 15:05:46 2015 +0100
+
+    Fix deheader warnings
+    
+    Prior to this commit the output of deheader was:
+    	remove <stdlib.h> from ./jsmn.c
+    	in ./example/jsondump.c, realloc() portability requires <unistd.h>.
+    	in ./example/simple.c, strtol() portability requires <stdlib.h>.
+    	saw 4 files, 16 includes, 1 removable
+
+[33mcommit fdceddf6854af498e192427d70bcc9c2e98a1729[m
+Merge: 8da639a 6bfa208
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Tue Dec 8 08:34:46 2015 +0800
+
+    Merge pull request #61 from elelay/master
+    
+    fix jsmntype_t definition in README
+
+[33mcommit 6bfa20872c82bab2e1f7824348081b2e9cd4d4b8[m
+Author: Eric Le Lay <elelay@macports.org>
+Date:   Mon Dec 7 20:14:07 2015 +0100
+
+    fix jsmntype_t definition in README
+
+[33mcommit 8da639a33468125dad9bcfe25ee8065e321c849c[m
+Merge: 076abdd f06a10c
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Nov 19 17:04:51 2015 +0800
+
+    Merge pull request #60 from baskerville/master
+    
+    Fix typo
+
+[33mcommit f06a10c1b7b58784d20d2b06bf24b78cacf3fb83[m
+Author: Bastien Dejean <nihilhill@gmail.com>
+Date:   Thu Nov 19 09:55:46 2015 +0100
+
+    Fix typo
+
+[33mcommit 076abddc19f844b98e5ee591eae8d8a9a34c2c19[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 31 18:43:04 2015 +0200
+
+    fixed privitive value typo in tests
+
+[33mcommit 7fb89f1eb23a2a62d54fd5c3b9c44243828ecfd4[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 31 18:37:25 2015 +0200
+
+    initialized ok variable in tests, parse should still return 1 if expected result is a failure
+
+[33mcommit 8a5ee3d41b17a600effe0c994beac093ca836118[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 31 18:33:43 2015 +0200
+
+    fixed a typo in the test name
+
+[33mcommit 2db03781c59bd59cbb9269d6e5793b884c788816[m
+Merge: 0c2d60b 2d185aa
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sun Oct 25 22:42:48 2015 +0200
+
+    Merge pull request #55 from goriy/example_realloc_fix
+    
+    small fix of jsondump example for cases of realloc failures
+
+[33mcommit 2d185aa465782ba30bfaea5ccd39cea4917e69a8[m
+Author: goriy <goriy@users.noreply.github.com>
+Date:   Sun Oct 25 23:28:19 2015 +0300
+
+    tiny realloc function wrapper which handles cases of realloc failures
+    
+    Memory reallocation with old data pointer handling is done by means
+    of realloc_it() function.
+    
+    Tiny inline function realloc_it() is a wrapper function for standart
+    realloc() which frees old memory pointer and prints errno to stderr
+    if realloc fails.
+
+[33mcommit e709651a20f3b32c5cca9e3ca29c6b0b43bbb4d8[m
+Author: goriy <goriy@users.noreply.github.com>
+Date:   Sat Oct 24 23:32:51 2015 +0300
+
+    small fix of jsondump example for cases of realloc failures
+    
+    When realloc() function fails it returns NULL pointer.
+    But old data pointer remains valid in such a case.
+    
+    It's a mistake to use old data pointer to store new
+    pointer returned by realloc. In case of realloc failure,
+    pointer is overwritten with NULL value, but old used memory
+    remains unreferenced and could not be even freed anymore.
+    Such mistakes could lead to memory leaks.
+
+[33mcommit 0c2d60b8e7820857fe14dfd113a90c94b2f18611[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:25:44 2015 +0200
+
+    added and marked as fixme tests for false positives in objects
+
+[33mcommit f7e6dcb7a2296386f251417e3fc259ef43abb41c[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:24:44 2015 +0200
+
+    added another test of invalid array
+
+[33mcommit e5fb875b593447c33accaf3572c5b7bc662829d7[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:19:01 2015 +0200
+
+    added another test of invalid array
+
+[33mcommit aedc121ce8a5ef0156ee6cb7e06fcd96457220a0[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:14:13 2015 +0200
+
+    added check for null pointer before fixing tokens after parsing is done
+
+[33mcommit 824d9a769c38584c5aef9f6f12642645c66dc055[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:09:35 2015 +0200
+
+    applied fix from wireshark
+
+[33mcommit d0664f9a2ee942e0edaa255309f67b3f77e04b50[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:06:39 2015 +0200
+
+    changed jsmnerr_t type to int
+
+[33mcommit 5e37daeec3cb49dc34a9377d3d2230c0394d1f3c[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 15:01:01 2015 +0200
+
+    added issue 27 test case
+
+[33mcommit edd751896de5de1fcee95cb65949e6784c726751[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 14:58:47 2015 +0200
+
+    fixed return value on incremental parting
+
+[33mcommit 9b4e33199f16fe0dd764db3622ab772e4764e0e0[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 14:58:31 2015 +0200
+
+    moved tests into a subfolder, added table-driven tests
+
+[33mcommit 226f318224e772edf3109da3af1d283e6dee3d57[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 10:50:22 2015 +0200
+
+    json token type enum doesn't start with zero value anymore, fixes #24
+
+[33mcommit d87c22d2cd38bb4065d2b33cb683792c2dc9eed3[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 10:42:30 2015 +0200
+
+    removed mixed declarations and code, fixes #45
+
+[33mcommit 6809c029aa0f194bb7bb03a9e2fe70e729bf209b[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 10:39:27 2015 +0200
+
+    changed test function args to void, fixes #46
+
+[33mcommit 6cb9c3721dfd7fab2bd63df9683b6fed67f86212[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sat Oct 17 10:29:54 2015 +0200
+
+    test exit status depends on number of failed tests
+
+[33mcommit bd9bd55c3a79a1f1f24d1bbf1c4a12e40a4810c8[m
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Sep 24 18:22:14 2015 +0200
+
+    Changed links to github
+
+[33mcommit 26193d39c2d17bf184b691ebfa406b5b9782577a[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Fri Dec 19 01:40:26 2014 +0200
+
+    updated README
+
+[33mcommit cf38b7d17157ba674199238da776d822b184c154[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 16:21:36 2014 +0200
+
+    added js string boundaries checks for string parser, fixes issue #31; added tests to cover it; fixed makefile to use custom cflags/ldflags
+
+[33mcommit 91d7389ec80c742a589bfed25e62aa5f95d2f0f9[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 15:36:18 2014 +0200
+
+    added some tests for key/values nodes and added some stricter validations
+
+[33mcommit 946a2b1e02665a6c0235ba26c432cf09fe598cce[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 15:06:12 2014 +0200
+
+    moved i declaration to the top of the block, issue #38 fixed
+
+[33mcommit a0e2b876cacf1dae415dd331e0589b1832ae2052[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 14:28:27 2014 +0200
+
+    including stddef.h in the jsmn.h, fixed issue #28
+
+[33mcommit 838061aa96bf9a756b3ae744787064b3201da914[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 14:14:45 2014 +0200
+
+    removed trailing spaces
+
+[33mcommit 8a22e0a14900dfcc4cdcfc71d5e12acff561ce25[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Nov 17 14:13:58 2014 +0200
+
+    implemented key/value hierarchy; added 2 examples; fixed some warnings in tests
+
+[33mcommit e0847b52b5cec05ce91c99c9ed09d1abf81a0a7f[m
+Merge: 76cd398 cf39341
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Oct 9 19:49:10 2014 +0300
+
+    Merged in setekhid/jsmn/setekhid/jsmnh2822-warning-commas-at-the-end-of-e-1408807731663 (pull request #11)
+    
+    jsmn.h:28:22: warning: commas at the end of enumerator lists are a C99-specific feature [-Wc99-extensions]
+
+[33mcommit cf39341a39938e304cf0f2371ac97ea4c48da973[m
+Author: Wizard Tai <geb.1989@gmail.com>
+Date:   Sat Aug 23 15:28:58 2014 +0000
+
+    jsmn.h:28:22: warning: commas at the end of enumerator lists are a C99-specific feature [-Wc99-extensions]
+    
+    WITH:
+    
+    -std=c89 -Wall -pedantic -Wno-declaration-after-statement
+
+[33mcommit 76cd398859b868988d3ab0d663d9ba7c8b35e9d9[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Fri Feb 21 11:04:16 2014 +0200
+
+    removed JSMN_SUCCESS value from the readme
+
+[33mcommit f2864e69b90e7f80b37c04c562b99b222b591235[m
+Merge: 5faee05 db379ec
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Fri Feb 21 11:03:29 2014 +0200
+
+    Merged in MacGritsch/jsmn-patch (pull request #7)
+    
+    Added "extern C" to use it with CPP.
+
+[33mcommit db379ec1248ff8a24c3bb330d46e73898ff3adc6[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Fri Feb 21 09:53:45 2014 +0100
+
+    Added "extern C" to use it with CPP.
+
+[33mcommit a89501b2fbc4fa30b0653328931cf7d9162851e6[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Fri Feb 21 09:52:23 2014 +0100
+
+    Integrate changes made by Serge Zaitsev.
+
+[33mcommit 5faee057cb4f75fcb72a57e628cf697bf0467c85[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Fri Feb 21 00:24:29 2014 +0200
+
+    edited readme about what's inside the repo. closes issue #19
+
+[33mcommit f0ae25f873ca13cf798a7381d9ea4c5d51db3a79[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Fri Feb 21 00:11:52 2014 +0200
+
+    added way to specify json string length, added test for non-strict mode
+
+[33mcommit 809c7c6db1fd8691db78900b952f94150e7d98c9[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Thu Feb 20 22:27:07 2014 +0200
+
+    added way to estimate number of tokens before parsing
+
+[33mcommit 733b8e958e64196b5f440fe5d631e45c7445a094[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Sun Feb 16 10:54:19 2014 +0100
+
+    Changes for SIZE_MAX
+
+[33mcommit c91adcedede3392e910bd5befbe4ec24ad136db7[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Sun Feb 16 10:45:20 2014 +0100
+
+    - Added possibility to specify the lenght of the input buffer (if not null-terminated).
+    - Added "extern C" to use it with CPP.
+
+[33mcommit 659842c65c58724673fcc8a3ff7bd9408e5804f9[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Sun Feb 16 10:42:27 2014 +0100
+
+    - Added possibility to specify the lenght of the input buffer (if not null-terminated).
+    - Added "extern C" to use it with CPP.
+
+[33mcommit 385b42e740fd8e040057ba682e402a208f211db7[m
+Author: Gabriel Gritsch <gabriel@gritsch-soft.com>
+Date:   Wed Feb 12 17:53:45 2014 +0100
+
+    - Added possibility to specify the lenght of the input buffer (if not null-terminated).
+    - Added "extern C" to use it with CPP.
+
+[33mcommit 86350f2bb1681c573abd44018ee49883989008dd[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sun Feb 9 17:09:15 2014 +0200
+
+    a proper fix for signed comparison
+
+[33mcommit da959780339c33ebe0c3d0f86351a9734d6eb08b[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Sun Feb 9 17:04:39 2014 +0200
+
+    added cast size_t to int to avoid warnings, removed string.h header since it was merged by accident
+
+[33mcommit d0ca2df480f016936de58c03d59ab45ebc259f84[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jan 27 17:11:54 2014 +0200
+
+    fixed jsmntype_t definition
+
+[33mcommit c29d151bfac8656c693fa5843279ff2273aa7381[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jan 27 16:04:43 2014 +0200
+
+    added link to the web page
+
+[33mcommit 2b0e4464c7d921a80b8053d305995a465d4d67df[m
+Merge: 323395e e397f0d
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jan 27 16:09:33 2014 +0200
+
+    Merged in frnknstn/jsmn/markdown (pull request #5)
+    
+    rename README so markdown renders in source control
+
+[33mcommit 323395efac30a5c4bfb09aff1cfac9168d2627c2[m
+Merge: 40392b7 ee10da0
+Author: Serge Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jan 27 16:08:19 2014 +0200
+
+    Merged in frnknstn/jsmn/clean (pull request #4)
+    
+    delete jsmn_test.exe when doing make clean
+
+[33mcommit 40392b73e3f3048e10f1338f7ab9b5e47a8aa08e[m
+Author: Serge A. Zaitsev <zaitsev.serge@gmail.com>
+Date:   Mon Jan 27 15:58:43 2014 +0200
+
+    fixed indentation and comments style after merge
+
+[33mcommit e397f0dfb652b39dd4d9f753d11035cf2bc0b7b2[m
+Author: Peter Finlayson <frnknstn@iafrica.com>
+Date:   Mon Dec 23 12:39:00 2013 +0200
+
+    rename README so markdown renders in source control
+    
+    The readme file is in markdown, but most source control systems and repos (including bitbucket) expect a markdown readme to be called README.md
+
+[33mcommit ee10da0f1e97b12126596a8c436aacb8ad62c832[m
+Author: Peter Finlayson <frnknstn@iafrica.com>
+Date:   Mon Dec 23 12:29:33 2013 +0200
+
+    delete jsmn_test.exe when doing make clean
+    
+    When building the jsmn test suite on Windows via mingw, the output executable is called "jsmn_test.exe" instead of just "jsmn_test".
+
+[33mcommit 07af5df94bd672ffd57428fc615c784e580b9fba[m
+Merge: f190d18 6f4e2f7
+Author: del6597 <devnull@localhost>
+Date:   Fri Jul 19 00:23:58 2013 -0400
+
+    Removes the incorrect counting of tokens
+
+[33mcommit f190d18a52e232125bcec9920df1cb171330078b[m
+Author: del6597 <devnull@localhost>
+Date:   Fri Jul 19 00:15:49 2013 -0400
+
+    Adds checking to unicode characters that are \uXXXX where X is a hexidecimal digit
+    Adds new tests for unicode character coverage
+
+[33mcommit 6f4e2f7a565fb779159a299efe6e1e5110c2f1a6[m
+Author: del6597 <devnull@localhost>
+Date:   Wed Jul 17 00:05:47 2013 -0400
+
+    Added a method for jsmn_estimate_tokens(const char *json);
+
+[33mcommit 958c758f2e9eb501679ab3bd6cda7d14421e84f4[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Oct 22 21:54:46 2012 +0300
+
+    fixed: invalid object/arrays were passed successfully in tree mode; added tests for this case
+
+[33mcommit 3d6fb06ee9636902380856ad3656cb0504b0fff3[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Oct 1 12:43:37 2012 +0300
+
+    fixed typo
+
+[33mcommit cf172e71d7d8802cccf0fb8369280c6e1aae89a2[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Oct 1 11:15:48 2012 +0300
+
+    fixed tests: missing jsmn_init() before parsing; added tests for empty arrays/objects
+
+[33mcommit e0ceee893c86f7f727bd05aa0e96a716983b610a[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Sep 26 20:28:12 2012 +0300
+
+    fixed strict mode: space symbols are allowed after primitives; added some new tests
+
+[33mcommit 37964b40ee94fdfdc9a8408a9ade9d7f3cb94683[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Sep 26 20:19:21 2012 +0300
+
+    added optional parent token pointer support. Increases parsing speed
+
+[33mcommit cfbb5b509174552ed00ac0ad46d474d00cad6e9d[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Sun Sep 23 20:30:56 2012 +0300
+
+    removed unused variable
+
+[33mcommit 974133db8531c7edd9969c8ebb04470318fc767d[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Sun Sep 23 20:29:48 2012 +0300
+
+    tokens array items are now being initialized during allocation, removed redundant code that significantly slowed down the parser
+
+[33mcommit e542dea54ef194c36d5815bfe18a1b7e0615d02b[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Sep 3 19:54:40 2012 +0300
+
+    changed return value to jsmnerr_t, fixed warning about signed/unsigned values
+
+[33mcommit af04595fe243554ee762f515c088f99ce26e2b27[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Thu Feb 2 14:05:47 2012 +0200
+
+    fix: error is returned if brackets are unmatched
+
+[33mcommit f3b41ae30c7627f540ee539aed51bcca06d23a82[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Thu Feb 2 13:26:15 2012 +0200
+
+    fixed: superior node size is now an index, not a pointer (safe to realloc)
+
+[33mcommit a983a7606136a3dfd538a9940c5ebf48d200251c[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Thu Feb 2 13:15:22 2012 +0200
+
+    added reading with small number of tokens test, fixed NOMEM issue #2
+
+[33mcommit 53454e542929d07b6fea438fd112eed2f7d865b4[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Thu Feb 2 11:40:36 2012 +0200
+
+    added test for partial array reading
+
+[33mcommit 41171ecd5129abf2b6a933c2cb81e6795963f1a3[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 17:51:42 2012 +0200
+
+    fixed typo, added JSMN_STRICT mode
+
+[33mcommit e395ad562e83e6db07b88cb595cb676f6ffe8420[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 17:18:32 2012 +0200
+
+    added one more test case for partial string parser
+
+[33mcommit 30f932772ecd749f43b9e9fda18626d3895e4c1c[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 17:15:54 2012 +0200
+
+    tested partial parser for strings, added primitive string parser test, fixed token allocation
+
+[33mcommit 929e2337562c21d17b4ee31b1db90ccf0fa09d8d[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 16:03:36 2012 +0200
+
+    added tests for primitive types, primitive types now can be stored outside the objects without braces
+
+[33mcommit 443be365f6bf8639a1b1e836e8e948d12af28100[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 14:02:12 2012 +0200
+
+    removed JSON string and token array from parser internals, because they must not be saved between parse() calls
+
+[33mcommit bed0a7a3e647abb7204d73c69f9f44b37bdfc84f[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 13:56:06 2012 +0200
+
+    changed API: parse now is more flexible, but init jsut resets the parser; added new test macro to compate strings, fixed Makefile
+
+[33mcommit 4b5c5ed66ac35f50b6c172a712883acb5f0cc62f[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 12:38:51 2012 +0200
+
+    switched to C unit-tests instead of bash
+
+[33mcommit 2928f7ec0ebcd6ae9937a5689d8da2369c863f69[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Feb 1 12:38:05 2012 +0200
+
+    renamed: get_token to alloc_token
+
+[33mcommit 0c22b772ed03ff960c2e052b2422a28b855b0927[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Jan 30 14:03:36 2012 +0200
+
+    using system AR program, build options are moved to config.mk
+
+[33mcommit d6209011a5ff65c4ea0e135ddef5e54e40edfa56[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Thu Sep 15 18:43:48 2011 +0300
+
+    added download links in README
+
+[33mcommit d6f48a6a3d11bd2acc23897674a9ab4a36ecb50b[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Mar 28 13:32:44 2011 +0300
+
+    fixed: issue #1, thanks to m_einman for his patch
+
+[33mcommit 42be9208f75cec544346c430e8811b359048e639[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Dec 28 12:06:52 2010 +0200
+
+    README updated
+
+[33mcommit 4e869f7e9e3121ee84b8a3b65806143f7c8672ab[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Dec 28 11:16:41 2010 +0200
+
+    Complex types (objects and arrays) now have also size - number of child elements
+
+[33mcommit c4d9412483bc561cef53a784e9f28b827e010e7b[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Dec 27 17:05:22 2010 +0200
+
+    Some comments added in json.c
+
+[33mcommit c955364a952c5ad5158637b77c75edcf010d49af[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Dec 27 17:00:24 2010 +0200
+
+    All objects renamed using jsmn prefix to keep consistency and not be mixed with other json libraries. Demo is now called just demo.
+
+[33mcommit 4e29ee705f1db5cf2cfed613439a5e8b377f06d9[m
+Author: Serge Zaitsev <devnull@localhost>
+Date:   Sun Dec 26 13:48:13 2010 +0200
+
+    Fix: check if no tokens lefs, return error in that case
+
+[33mcommit 99247345750f32468ce163e3c8a0ac39b52c65f0[m
+Author: Serge Zaitsev <devnull@localhost>
+Date:   Sun Dec 26 13:02:40 2010 +0200
+
+    Typo in tests fixed. Argument variable quoted
+
+[33mcommit 3d94cd0a184fbb319180a579323900289b29cc08[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 29 13:53:13 2010 +0200
+
+    Removed useless argument from printf
+
+[33mcommit 2cf5193d64e2b807584f05a698c1338516576991[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 29 13:52:11 2010 +0200
+
+    README changed. Now it is a template for the official web page
+
+[33mcommit 978ea959f41bf9653689fc3566e68bc4fc59785d[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 24 11:15:21 2010 +0200
+
+    Added test for a large number of tokens
+
+[33mcommit 508bf43fa001486025b5be6fbdc3d943e3d56ac4[m
+Author: Serge Zaitsev <devnull@localhost>
+Date:   Wed Nov 24 00:54:21 2010 +0200
+
+    Test framework implemented
+
+[33mcommit f88240ac2e081b94454203a2d8595b8598a037b3[m
+Author: Serge Zaitsev <devnull@localhost>
+Date:   Wed Nov 24 00:26:15 2010 +0200
+
+    Simplified demo output format
+
+[33mcommit 23b8487783f1fcabc164db71a9e1f5388ecb6daa[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 22 14:52:46 2010 +0200
+
+    Demo: option added to specify buffer size when reading
+
+[33mcommit 8e31e4d2148febcee4ee371eadcab06aa21b83e3[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 22 14:52:26 2010 +0200
+
+    jsmn: strings start from the first char after quotes
+
+[33mcommit b91dee9102c090cf7fffa089af48794e5c727c69[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 17 17:33:29 2010 +0200
+
+    Demo: declarations moved to the top of functions.
+
+[33mcommit 7a027a4dd2191a112ea0cc2e48ae56b36e0f385e[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 17 15:16:12 2010 +0200
+
+    Token manipulation functions changes. size_t replaced with unsigned int.
+
+[33mcommit 3922360800a704d81a33b20ab1c3c48f9bd837a2[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 17 12:19:38 2010 +0200
+
+    Demo: options added. Number of tokens can be specified now.
+
+[33mcommit 991ca5dd940ab9f1deb492b3c8cec4692c2f7099[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 17 12:05:29 2010 +0200
+
+    Demo: can now read from stdin
+
+[33mcommit d0d52f68478f5cf6cb19629968dfe07c3ca040a7[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Wed Nov 17 12:03:26 2010 +0200
+
+    Design: primitive type implemented as a replacement to boolean/number/null. String tokens point to the unquoted string
+
+[33mcommit 60509e2850a1f4ac8324acc282bc307378d4980d[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Nov 16 15:41:49 2010 +0200
+
+    Design: rewritten using parser structure
+
+[33mcommit a2755a75953e61fffb6210c16ddbaee1e4f6ff90[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Nov 16 13:50:13 2010 +0200
+
+    Design: some error codes added
+
+[33mcommit daf93a0ebd10e3778ec77a62577543fb11884c83[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Nov 16 11:56:08 2010 +0200
+
+    Feature: make difference between numbers and other primitives
+
+[33mcommit 470c77fa6370bc765310638cf56256aacf963846[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Nov 16 11:53:43 2010 +0200
+
+    Design: added assert macro and return macro.
+
+[33mcommit 30370e37f879a0871ccbc078f8d3c86938b3a063[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Tue Nov 16 11:45:10 2010 +0200
+
+    Design: Added asserts in parser. Increased number of tokens in demo.
+
+[33mcommit b99663079c1542e514f0ca8056cd87cb3683bd7e[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 17:59:51 2010 +0200
+
+    Fix: errpos has got a correct type now
+
+[33mcommit b0e73ec44dc2693b6be327c01b905193f153df4c[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 17:58:50 2010 +0200
+
+    Design: objects and arrays are different types now
+
+[33mcommit a70dab5cf97ba4f23b0d1582948a607cbae713fa[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 17:39:25 2010 +0200
+
+    Design: unrolled reference tables. Nested functions moved outside. Got smaller code.
+
+[33mcommit aa97d8b59960ff007632ac5a6a6993a46935092e[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 15:46:31 2010 +0200
+
+    Demo: changed to read from '.js' file
+
+[33mcommit a20a5aff1c300ba3784fff5ab284dac8caf9475a[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 15:02:35 2010 +0200
+
+    Fix: error position is an offset, not a pointer
+
+[33mcommit 0568be6e0b1304226ddf8b17f3df4a5dfa2babdd[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 15:00:42 2010 +0200
+
+    Demo separated from the jsmn code. Makefile changed. Some comments added
+
+[33mcommit 6b6b3ba5c1148a08a852d2b221270f1c29bfb166[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 13:27:14 2010 +0200
+
+    README and LICENSE added. MIT license choosen.
+
+[33mcommit f22c2d30b7c73ebf1a7815b4a3eb5df18c251ed1[m
+Author: Serge A. Zaitsev <devnull@localhost>
+Date:   Mon Nov 15 13:11:08 2010 +0200
+
+    Initial commit. Demo program is included in the jsmn.c code. Ugly names and no comments. Please, don't read this changeset
