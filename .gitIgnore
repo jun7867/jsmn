@@ -1,0 +1,6 @@
+Makefile
+example/myjson.c
+example/myjson.o
+libjsmn.a
+myjson_examplei
+*.o

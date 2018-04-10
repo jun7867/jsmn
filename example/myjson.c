@@ -10,7 +10,6 @@
 
 static const char *JSON_STRING =
 	"{\"user\": \"johndoe\", \"admin\": false, \"uid\": 1000,\n  "
-	"\"user\": \"jerry1004\", \"admin\": true, \"uid\": 2000,\n  "
 	"\"groups\": [\"users\", \"wheel\", \"audio\", \"video\"]}";
 
 static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
@@ -23,12 +22,15 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 
 int main() {
 	int i;
-	int r;
+	int r; //토큰개수
 	jsmn_parser p;
 	jsmntok_t t[128]; /* We expect no more than 128 tokens */
 
-	jsmn_init(&p);
-	r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0]));
+	jsmn_init(&p); //초기화
+	r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0])); //토큰개수
+	#ifdef DEBUG_MODE
+		printf("token count: %d \n",r);
+	#endif
 	if (r < 0) {
 		printf("Failed to parse JSON: %d\n", r);
 		return 1;
@@ -44,16 +46,28 @@ int main() {
 	for (i = 1; i < r; i++) {
 		if (jsoneq(JSON_STRING, &t[i], "user") == 0) {
 			/* We may use strndup() to fetch string value */
+			#ifdef DEBUG_MODE
+				printf("%d %d \n",t[i+1].start,t[i+1].end);
+				printf("[%d]",i+1);
+			#endif
 			printf("- User: %.*s\n", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
 			i++;
 		} else if (jsoneq(JSON_STRING, &t[i], "admin") == 0) {
 			/* We may additionally check if the value is either "true" or "false" */
+			#ifdef DEBUG_MODE
+				printf("%d %d \n",t[i+1].start,t[i+1].end);
+				printf("[%d]",i+1);
+			#endif
 			printf("- Admin: %.*s\n", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
 			i++;
 		} else if (jsoneq(JSON_STRING, &t[i], "uid") == 0) {
 			/* We may want to do strtol() here to get numeric value */
+			#ifdef DEBUG_MODE
+				printf("%d %d \n",t[i+1].start,t[i+1].end);
+				printf("[%d]",i+1);
+			#endif
 			printf("- UID: %.*s\n", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
 			i++;
@@ -65,8 +79,12 @@ int main() {
 			}
 			for (j = 0; j < t[i+1].size; j++) {
 				jsmntok_t *g = &t[i+j+2];
+				#ifdef DEBUG_MODE
+					printf("[%d]",i+j+2);
+				#endif
 				printf("  * %.*s\n", g->end - g->start, JSON_STRING + g->start);
 			}
+
 			i += t[i+1].size + 1;
 		} else {
 			printf("Unexpected key: %.*s\n", t[i].end-t[i].start,
