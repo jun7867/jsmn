@@ -19,7 +19,12 @@ static int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
 	}
 	return -1;
 }
-
+static void printTokens(jsmntok_t *t,int count){
+	int i=0;
+	for(i=0;i<count;i++){
+		printf("%d: start:%d, end:%d, size:%d, type:%d,parent:%d \n",i,t[i].start,t[i].end,t[i].size,t[i].type,t[i].parent);
+	}
+}
 int main() {
 	int i;
 	int r; //토큰개수
@@ -30,6 +35,7 @@ int main() {
 	r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0])); //토큰개수
 	#ifdef DEBUG_MODE
 		printf("token count: %d \n",r);
+		printTokens(t,r);
 	#endif
 	if (r < 0) {
 		printf("Failed to parse JSON: %d\n", r);
@@ -50,8 +56,9 @@ int main() {
 				printf("%d %d \n",t[i+1].start,t[i+1].end);
 				printf("[%d]",i+1);
 			#endif
-			printf("- User: %.*s\n", t[i+1].end-t[i+1].start,
+			printf("- User: %.*s   ", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
+			printf("parent: %d \n",t[i+1].parent);
 			i++;
 		} else if (jsoneq(JSON_STRING, &t[i], "admin") == 0) {
 			/* We may additionally check if the value is either "true" or "false" */
@@ -59,21 +66,25 @@ int main() {
 				printf("%d %d \n",t[i+1].start,t[i+1].end);
 				printf("[%d]",i+1);
 			#endif
-			printf("- Admin: %.*s\n", t[i+1].end-t[i+1].start,
+			printf("- Admin: %.*s   ", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
+			printf("parent: %d \n",t[i+1].parent);
 			i++;
+
 		} else if (jsoneq(JSON_STRING, &t[i], "uid") == 0) {
 			/* We may want to do strtol() here to get numeric value */
 			#ifdef DEBUG_MODE
 				printf("%d %d \n",t[i+1].start,t[i+1].end);
 				printf("[%d]",i+1);
 			#endif
-			printf("- UID: %.*s\n", t[i+1].end-t[i+1].start,
+			printf("- UID: %.*s   ", t[i+1].end-t[i+1].start,
 					JSON_STRING + t[i+1].start);
+			printf("parent: %d \n",t[i+1].parent);
 			i++;
 		} else if (jsoneq(JSON_STRING, &t[i], "groups") == 0) {
 			int j;
-			printf("- Groups:\n");
+			printf("- Groups:   ");
+			printf("parent: %d \n",t[i].parent);
 			if (t[i+1].type != JSMN_ARRAY) {
 				continue; /* We expect groups to be an array of strings */
 			}
@@ -82,7 +93,8 @@ int main() {
 				#ifdef DEBUG_MODE
 					printf("[%d]",i+j+2);
 				#endif
-				printf("  * %.*s\n", g->end - g->start, JSON_STRING + g->start);
+				printf("  * %.*s   ", g->end - g->start, JSON_STRING + g->start);
+				printf("parent: %d \n",t[i+j+2].parent);
 			}
 
 			i += t[i+1].size + 1;
