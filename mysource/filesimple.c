@@ -28,7 +28,7 @@ char *readJSONFILE(){
 	FILE *fp;
 	int count=0;
 	char line[128];
-	fp=fopen("data.json","rt"); //파일 열기
+	fp=fopen("data2.json","rt"); //파일 열기
 	if(fp==NULL){
 		printf("Error file not open \n");
 		return NULL;
@@ -100,7 +100,7 @@ void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount,int *objectIndex
 	int j=0;
 	printf("********OBJECT LIST******\n");
 	for(i=0;i<tokcount;i++){
-		if(t[i].type==JSMN_OBJECT && t[i-1].size==0 ){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
+		if(t[i].type==JSMN_OBJECT && t[i-1].size==0 && t[i+1].parent==0){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
 			printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
 			j++; // 출력된것의 번호를 알기 위한것.
 		}
@@ -117,7 +117,7 @@ int addsize=0;
 objectIndex=(int*)malloc(sizeof(int)); // objectIndex를 int 크기만큼 동적할당 해준다.
 objectIndex=0;
 for(i=0;i<tokcount;i++){
-	if(t[i].type==JSMN_OBJECT && t[i-1].size==0 ){ // 큰 오브젝트.
+	if(t[i].type==JSMN_OBJECT && t[i-1].size==0 && t[i+1].parent==0){ // 큰 오브젝트.
 		addsize+=sizeof(int);
 		objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
 		objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
@@ -135,7 +135,7 @@ while(1){
 	if(objectIndex[select]==0)
 		objectIndex[select]=50; //만약에 object가 1개면 밑에 반복문을 어느정도 진행시키기 위한 임의값.
 	for(i=objectIndex[select-1]+2;i<objectIndex[select-1]+(objectIndex[1]-objectIndex[0]);i++){ // 첫번째 object 시작+2(이미 첫번째 해서)부터 다음 object 시작 전까지 진행.
-		if(t[i].size >0 && t[i].type==JSMN_STRING ){ //name값을 찾기
+		if(t[i].size >0 && t[i].type==JSMN_STRING && t[i].parent==0){ //name값을 찾기
 				printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
 				printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
 			}
