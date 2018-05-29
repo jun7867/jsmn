@@ -115,6 +115,7 @@ int s=0;
 int addsize=0;
 
 objectIndex=(int*)malloc(sizeof(int)); // objectIndex를 int 크기만큼 동적할당 해준다.
+objectIndex=0;
 for(i=0;i<tokcount;i++){
 	if(t[i].type==JSMN_OBJECT && t[i-1].size==0 ){ // 큰 오브젝트.
 		addsize+=sizeof(int);
@@ -122,7 +123,8 @@ for(i=0;i<tokcount;i++){
 		objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
 		j++; // 출력된것의 번호를 알기 위한것.
 	}
-
+}
+i=0;
 while(1){
 	printf("원하는 번호 입력:  (exit:0) ");
 	scanf("%d",&select); // 번호를 입력받기.
@@ -140,13 +142,14 @@ while(1){
 	}
 }
 }
+
 int main() {
 	int i;
 	int r;
 	char* JSON_STRING=readJSONFILE();
 	char* JSON_OBJECT;
 
-	printf("%s",JSON_STRING);
+//	printf("%s",JSON_STRING);
 
 	jsmn_parser p;
 	jsmntok_t t[128]; /* We expect no more than 128 tokens */
@@ -177,3 +180,29 @@ int main() {
 	/* Loop over all keys of the root object */
 //	return EXIT_SUCCESS;
 }
+	/* Loop over all keys of the root object */
+//	return EXIT_SUCCESS;
+// for (i = 1; i < r; i++) {	//	return EXIT_SUCCESS;
+// 	if (jsoneq(JSON_STRING, &t[i], "name") == 0) {
+// 			/* We may use strndup() to fetch string value */
+// 			printf("- name: %.*s\n", t[i+1].end-t[i+1].start,
+// 					JSON_STRING + t[i+1].start);
+// 			i++;
+// 		} else if (jsoneq(JSON_STRING, &t[i], "keywords") == 0) {
+// 			/* We may additionally check if the value is either "true" or "false" */
+// 			printf("- keywords: %.*s\n", t[i+1].end-t[i+1].start,
+// 					JSON_STRING + t[i+1].start);
+// 			i++;
+// 		} else if (jsoneq(JSON_STRING, &t[i], "description") == 0) {
+// 			/* We may want to do strtol() here to get numeric value */
+// 			printf("- UID: %.*s\n", t[i+1].end-t[i+1].start,
+// 					JSON_STRING + t[i+1].start);
+// 			i++;
+// 		} else if (jsoneq(JSON_STRING, &t[i], "example") == 0) {
+// 			int j;
+// 			printf("- example:\n");
+// 			printf("- UID: %.*s\n", t[i+2].end-t[i+2].start,
+// 					JSON_STRING + t[i+2].start);
+// 	}
+// 	return EXIT_SUCCESS;
+// }
