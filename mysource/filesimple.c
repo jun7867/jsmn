@@ -64,7 +64,7 @@ void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex
 	int i;
 	int count=0;
 	for(i=1;i<tokcount+1;i++){
-		if(t[0].type==JSMN_ARRAY){
+		if(t[0].type==JSMN_ARRAY ){
 			if(t[i].size >0 && t[i].type==JSMN_STRING){
 				// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
 				nameTokIndex[count]=i;
@@ -73,9 +73,20 @@ void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex
 		}
 		else{
 			if(t[i].size >0 && t[i].type==JSMN_STRING &&t[t[i].parent].parent<0 ){
-				// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
+
+				if(t[i+1].type==2){ // 첫번째 name의 다음이 array이면 아래 조건문 실행(data4.json일때)
+					for(i+=1;i<tokcount;i++){
+					if(t[i].size >0 && t[i].type==JSMN_STRING){
+					//	printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
+						nameTokIndex[count]=i;
+						count++;
+					}
+				}
+				}
+				else{
 				nameTokIndex[count]=i;
 				count++;
+			}
 		}
 	}
 	}
@@ -118,10 +129,26 @@ void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount,int *objectIndex
 				j++; // 출력된것의 번호를 알기 위한것.
 			}
 		}
-		else{
+		else{ //시작이 array가 아닐때
 			if(t[i].type==JSMN_OBJECT && t[i-1].size==0 && t[t[i+1].parent].parent<0){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
-				printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
-				j++; // 출력된것의 번호를 알기 위한것.
+
+				if(t[i+2].type==2){ // i가 {로 시작하는값이므로 그것의 +2 즉 첫번째 name의 다음이 어레이면 실행.(data4.json일때)
+					for(i+=1;i<tokcount;i++){
+					if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2){
+						printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
+						j++; // 출력된것의 번호를 알기 위한것.
+						}
+					}
+				}
+				else{
+					if(t[i].type==JSMN_OBJECT && t[i-1].size==0 && t[t[i+1].parent].parent<0){
+						printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
+						j++; // 출력된것의 번호를 알기 위한것.
+				}
+			}
+
+				// printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
+				// j++; // 출력된것의 번호를 알기 위한것.
 			}
 		}
 	}
@@ -145,13 +172,25 @@ for(i=0;i<tokcount;i++){
 			j++; // 출력된것의 번호를 알기 위한것.
 		}
 	}
-	else{
+	else{ //시작이 오브젝트일때
 		if(t[i].type==JSMN_OBJECT && t[i-1].size==0){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
+			if(t[i+2].type==2){
+				for(i+=1;i<tokcount;i++){
+					if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2 ){
+						addsize+=sizeof(int);
+						objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
+						objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+						j++; // 출력된것의 번호를 알기 위한것.
+					}
+				}
+			}
+			else{
 			addsize+=sizeof(int);
 			objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
 			objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
 			j++; // 출력된것의 번호를 알기 위한것.
 		}
+	}
 	}
 }
 i=0;
@@ -171,11 +210,21 @@ while(1){
 					printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
 				}
 		}
-		else{
-			if(t[i].size >0 && t[i].type==JSMN_STRING && t[t[i].parent].parent<0){ //name값을 찾기
+		else{ // 시작값이 array로 시작하는것이 아닐때 즉 오브젝트일때
+			if(t[i].size >0 && t[i].type==JSMN_STRING){ //name값을 찾기
+				if(t[i+1].type==2){ // i가 첫번째 name이므로 i+1 즉 첫번째 name의 다음이 어레이면 실행.(data4.json일때)
+					for(i+=1;i<tokcount;i++){
+					if(t[i].size >0 && t[i].type==JSMN_STRING){
+						printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
+						printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
+						}
+					}
+				}
+				else{ //data4.json이 아닐때
 					printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
 					printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
 				}
+			}
 		}
 	}
 }
