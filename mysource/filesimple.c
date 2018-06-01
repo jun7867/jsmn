@@ -28,7 +28,10 @@ char *readJSONFILE(){
 	FILE *fp;
 	int count=0;
 	char line[128];
-	fp=fopen("data3.json","rt"); //파일 열기
+	char filename[128];
+	printf("원하는 파일명 입력: \n");
+	scanf("%s",filename);
+	fp=fopen(filename,"rt"); //파일 열기
 	if(fp==NULL){
 		printf("Error file not open \n");
 		return NULL;
@@ -61,11 +64,20 @@ void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex
 	int i;
 	int count=0;
 	for(i=1;i<tokcount+1;i++){
-		if(t[i].size >0 && t[i].type==JSMN_STRING ){
-			// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
-			nameTokIndex[count]=i;
-			count++;
+		if(t[0].type==JSMN_ARRAY){
+			if(t[i].size >0 && t[i].type==JSMN_STRING){
+				// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
+				nameTokIndex[count]=i;
+				count++;
+			}
 		}
+		else{
+			if(t[i].size >0 && t[i].type==JSMN_STRING &&t[t[i].parent].parent<0 ){
+				// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
+				nameTokIndex[count]=i;
+				count++;
+		}
+	}
 	}
 }
 void printNameList(char *JSON_STRING,jsmntok_t *t,int *nameTokIndex){
@@ -99,16 +111,15 @@ void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount,int *objectIndex
 	int i=0;
 	int j=0;
 	printf("********OBJECT LIST******\n");
-	printf("%d \n",t[0].type);
 	for(i=0;i<tokcount;i++){
 		if(t[0].type==JSMN_ARRAY){ //type이 array로 시작하면 아래식 진행.
-			if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2 ){ 
+			if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2 ){
 				printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
 				j++; // 출력된것의 번호를 알기 위한것.
 			}
 		}
 		else{
-			if(t[i].type==JSMN_OBJECT && t[i-1].size==0 ){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
+			if(t[i].type==JSMN_OBJECT && t[i-1].size==0 && t[t[i+1].parent].parent<0){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
 				printf("[NAME %d] %.*s \n",j+1,t[i+2].end-t[i+2].start,JSON_STRING + t[i+2].start); // i+2인 이유는 object에서 +2인것이 value이기 떄문에.
 				j++; // 출력된것의 번호를 알기 위한것.
 			}
@@ -135,7 +146,7 @@ for(i=0;i<tokcount;i++){
 		}
 	}
 	else{
-		if(t[i].type==JSMN_OBJECT && t[i-1].size==0 ){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
+		if(t[i].type==JSMN_OBJECT && t[i-1].size==0){ // 토큰의 타입이 오브젝트일때 4개가 나오는데 거기서 그 전의 사이즈가 0인것이 큰 오브젝트다.
 			addsize+=sizeof(int);
 			objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
 			objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
@@ -152,12 +163,20 @@ while(1){
 	printf("%.*s : %.*s \n",t[s].end-t[s].start,JSON_STRING + t[s].start,
 	t[s+1].end-t[s+1].start,JSON_STRING + t[s+1].start); // 첫번째 name과 value를 출력
 	if(objectIndex[select]==0)
-		objectIndex[select]=50; //만약에 object가 1개면 밑에 반복문을 어느정도 진행시키기 위한 임의값.
+		objectIndex[select]=sizeof(objectIndex); //만약에 object가 1개면 밑에 반복문을 어느정도 진행시키기 위한 임의값.
 	for(i=objectIndex[select-1]+2;i<objectIndex[select-1]+(objectIndex[1]-objectIndex[0]);i++){ // 첫번째 object 시작+2(이미 첫번째 해서)부터 다음 object 시작 전까지 진행.
-		if(t[i].size >0 && t[i].type==JSMN_STRING ){ //name값을 찾기
-				printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
-				printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
-			}
+		if(t[0].type==JSMN_ARRAY){
+			if(t[i].size >0 && t[i].type==JSMN_STRING){ //name값을 찾기
+					printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
+					printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
+				}
+		}
+		else{
+			if(t[i].size >0 && t[i].type==JSMN_STRING && t[t[i].parent].parent<0){ //name값을 찾기
+					printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
+					printf("%.*s \n",t[i+1].end-t[i+1].start,JSON_STRING + t[i+1].start); //vaule 출력.
+				}
+		}
 	}
 }
 }

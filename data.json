@@ -14,3 +14,19 @@
   ],
   "exclude": "test"
 }
+{
+  "name": "jsmn2",
+  "keywords": "json2",
+  "description": " 2 Minimalistic JSON parser/tokenizer in C. It can be easily integrated into resource-limited or embedded projects",
+  "repository":
+  {
+    "type": "git 2",
+    "url": "https://github.com/zserge/jsmn.git 2"
+  },
+  "frameworks": "* 2",
+  "platforms": "* 2",
+  "examples": [
+    "example/*.c 2"
+  ],
+  "exclude": "test 2"
+}
