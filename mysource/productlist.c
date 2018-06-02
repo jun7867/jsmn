@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "../productlist.h"
-
+void PrintList(char *JSON_STRING, jsmntok_t *t, int tokcount,NameTokenInfo *nameTokenInfo);
 //	static const char *JSON_STRING =
 //	"{\"user\": \"johndoe\", \"admin\": false, \"uid\": 1000,\n  "
 //	"\"groups\": [\"users\", \"wheel\", \"audio\", \"video\"]}";
@@ -111,7 +111,7 @@ void printNameList(char *JSON_STRING,jsmntok_t *t,NameTokenInfo *nameTokenInfo){
 // }
 // }
 
-void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount,int *objectIndex)
+void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount)
 {
 	int i=0;
 	int j=0;
@@ -148,21 +148,23 @@ void objectNameList(char *JSON_STRING,jsmntok_t *t,int tokcount,int *objectIndex
 	}
 }
 
-void selecObject(char *JSON_STRING, jsmntok_t *t, int tokcount, int *objectIndex){
+void selecObject(char *JSON_STRING, jsmntok_t *t, int tokcount,NameTokenInfo *nameTokenInfo){
 int select=0;
 int i=0;
 int j=0;
 int s=0;
+int k;
 int addsize=0;
 
-objectIndex=(int*)malloc(sizeof(int)); // objectIndex를 int 크기만큼 동적할당 해준다.
-objectIndex=0;
+nameTokenInfo=(NameTokenInfo*)malloc(sizeof(NameTokenInfo)); // objectIndex를 int 크기만큼 동적할당 해준다.
+
 for(i=0;i<tokcount;i++){
 	if(t[0].type==JSMN_ARRAY){
 		if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2 ){
 			addsize+=sizeof(int);
-			objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
-			objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+			nameTokenInfo=(NameTokenInfo*)realloc(nameTokenInfo,addsize); // objectIndex에 int크기만큼 재할당 해준다.
+			nameTokenInfo[j].objectindex=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+
 			j++; // 출력된것의 번호를 알기 위한것.
 		}
 	}
@@ -172,16 +174,17 @@ for(i=0;i<tokcount;i++){
 				for(i+=1;i<tokcount;i++){
 					if(t[i].type==JSMN_OBJECT && t[i-1].size==0 || t[i-1].type==2 ){
 						addsize+=sizeof(int);
-						objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
-						objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+						nameTokenInfo=(NameTokenInfo*)realloc(nameTokenInfo,addsize); // objectIndex에 int크기만큼 재할당 해준다.
+						nameTokenInfo[j].objectindex=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+						k=Tokin(j,nameTokenInfo);
 						j++; // 출력된것의 번호를 알기 위한것.
 					}
 				}
 			}
 			else{
 			addsize+=sizeof(int);
-			objectIndex=(int*)realloc(objectIndex,addsize); // objectIndex에 int크기만큼 재할당 해준다.
-			objectIndex[j]=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
+			nameTokenInfo=(NameTokenInfo*)realloc(nameTokenInfo,addsize); // objectIndex에 int크기만큼 재할당 해준다.
+			nameTokenInfo[j].objectindex=i+1; //objectIndex값 저장. objectIndex[0]에는 i+1인 object의 첫번째 name이 저장되어있다.
 			j++; // 출력된것의 번호를 알기 위한것.
 		}
 	}
@@ -192,12 +195,12 @@ while(1){
 	printf("원하는 번호 입력:  (exit:0) ");
 	scanf("%d",&select); // 번호를 입력받기.
 	if(select == 0) break; //0을 입력했을때 빠져나오게 함.
-	s=objectIndex[select-1]; // 1번 누르면 objectIndex의 0번째부터 시작.
+	s=nameTokenInfo[select-1].objectindex; // 1번 누르면 objectIndex의 0번째부터 시작.
 	printf("%.*s : %.*s \n",t[s].end-t[s].start,JSON_STRING + t[s].start,
 	t[s+1].end-t[s+1].start,JSON_STRING + t[s+1].start); // 첫번째 name과 value를 출력
-	if(objectIndex[select]==0)
-		objectIndex[select]=sizeof(objectIndex); //만약에 object가 1개면 밑에 반복문을 어느정도 진행시키기 위한 임의값.
-	for(i=objectIndex[select-1]+2;i<objectIndex[select-1]+(objectIndex[1]-objectIndex[0]);i++){ // 첫번째 object 시작+2(이미 첫번째 해서)부터 다음 object 시작 전까지 진행.
+	if(nameTokenInfo[select].objectindex==0)
+		nameTokenInfo[select].objectindex=sizeof(nameTokenInfo); //만약에 object가 1개면 밑에 반복문을 어느정도 진행시키기 위한 임의값.
+	for(i=nameTokenInfo[select-1].objectindex+2;i<nameTokenInfo[select-1].objectindex+(nameTokenInfo[1].objectindex-nameTokenInfo[0].objectindex);i++){ // 첫번째 object 시작+2(이미 첫번째 해서)부터 다음 object 시작 전까지 진행.
 		if(t[0].type==JSMN_ARRAY){
 			if(t[i].size >0 && t[i].type==JSMN_STRING){ //name값을 찾기
 					printf("    [%.*s]    ",t[i].end-t[i].start,JSON_STRING + t[i].start); //name값에만 [] 넣어주기
@@ -222,7 +225,17 @@ while(1){
 		}
 	}
 }
+
 }
+
+int Tokin(int k,NameTokenInfo *nameTokenInfo){
+int result;
+result=nameTokenInfo[k].objectindex;
+
+return result;
+}
+
+
 
 int main() {
 	int i;
@@ -255,9 +268,10 @@ int main() {
 	jsonNamelist2(JSON_STRING,t,r,nameTokenInfo);
 	printNameList(JSON_STRING,t,nameTokenInfo);
 	// selecNameList(JSON_STRING,t,nameIndex);
-	objectNameList(JSON_STRING,t,r,objectIndex);
+	objectNameList(JSON_STRING,t,r);
 	// objectNameList2(JSON_STRING,t,r,objectIndex);
-	selecObject(JSON_STRING,t,r,objectIndex);
+	selecObject(JSON_STRING,t,r,nameTokenInfo);
+	// PrintList(JSON_STRING,t,r,nameTokenInfo);
 	/* Loop over all keys of the root object */
 //	return EXIT_SUCCESS;
 }
