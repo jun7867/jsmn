@@ -237,16 +237,24 @@ return result;
 
 void PrintList(char *JSON_STRING, jsmntok_t *t, int tokcount,NameTokenInfo *nameTokenInfo){
 int i;
-int count=0;
 int key;
-printf("**********************************************\n");
-printf("번호    제품명    제조사     가격     개수    \n");
-printf("**********************************************\n");
+char line[100];
+int price;
+int num;
+int total;
+printf("**************************************************\n");
+printf("번호    제품명    제조사     가격     개수   총가격  \n");
+printf("**************************************************\n");
 for(i=0;i<2;i++){
-key=Tokin(i,nameTokenInfo);
-	printf("%d       %.*s     %.*s       %.*s       %.*s    \n",count+1,t[key+3].end-t[key+3].start,JSON_STRING + t[key+3].start,
+key=Tokin(i,nameTokenInfo); // object no의 tokindex를 불러와 key에 저장.
+sprintf(line,"%.*s",t[key+5].end-t[key+5].start,JSON_STRING + t[key+5].start); //line에 price string 저장
+price=atoi(line); // price string을 int형으로 변경.
+sprintf(line,"%.*s",t[key+7].end-t[key+7].start,JSON_STRING + t[key+7].start);//line에 갯수 string 저장
+num=atoi(line); // 갯수 string을 int형으로 변경.
+total=price*num; // 가격 * 개수 = 총가격 .
+	printf("%d       %.*s     %.*s       %.*s       %.*s   %d \n",i+1,t[key+3].end-t[key+3].start,JSON_STRING + t[key+3].start,
 	t[key+1].end-t[key+1].start,JSON_STRING + t[key+1].start,t[key+5].end-t[key+5].start,JSON_STRING + t[key+5].start,
-	t[key+7].end-t[key+7].start,JSON_STRING + t[key+7].start);
+	t[key+7].end-t[key+7].start,JSON_STRING + t[key+7].start,total);
 }
 }
 
