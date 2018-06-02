@@ -225,7 +225,7 @@ while(1){
 		}
 	}
 }
-
+PrintList(JSON_STRING,t,tokcount,nameTokenInfo);
 }
 
 int Tokin(int k,NameTokenInfo *nameTokenInfo){
@@ -235,6 +235,20 @@ result=nameTokenInfo[k].objectindex;
 return result;
 }
 
+void PrintList(char *JSON_STRING, jsmntok_t *t, int tokcount,NameTokenInfo *nameTokenInfo){
+int i;
+int count=0;
+int key;
+printf("**********************************************\n");
+printf("번호    제품명    제조사     가격     개수    \n");
+printf("**********************************************\n");
+for(i=0;i<2;i++){
+key=Tokin(i,nameTokenInfo);
+	printf("%d       %.*s     %.*s       %.*s       %.*s    \n",count+1,t[key+3].end-t[key+3].start,JSON_STRING + t[key+3].start,
+	t[key+1].end-t[key+1].start,JSON_STRING + t[key+1].start,t[key+5].end-t[key+5].start,JSON_STRING + t[key+5].start,
+	t[key+7].end-t[key+7].start,JSON_STRING + t[key+7].start);
+}
+}
 
 
 int main() {
