@@ -28,6 +28,9 @@ jsmn_test.o: jsmn_test.c libjsmn.a
 filesimple_example: mysource/filesimple.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
+productlist: mysource/productlist.o libjsmn.a
+		$(CC) $(LDFLAGS) $^ -o $@
+
 jsondump: example/jsondump.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
@@ -37,4 +40,5 @@ clean:
 	rm -f simple_example
 	rm -f jsondump
 	rm -f filesimple_example
+	rm -f productlist
 .PHONY: all clean test
