@@ -53,14 +53,15 @@ char *readJSONFILE(){
 // 	}
 // 	}
 // }
-void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex){
+void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,NameTokenInfo *nameTokenInfo){
 	int i;
 	int count=0;
+
 	for(i=1;i<tokcount+1;i++){
 		if(t[0].type==JSMN_ARRAY ){
 			if(t[i].size >0 && t[i].type==JSMN_STRING){
 				// printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
-				nameTokIndex[count]=i;
+				nameTokenInfo[count].tokindex=i;
 				count++;
 			}
 		}
@@ -71,26 +72,26 @@ void jsonNamelist2(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex
 					for(i+=1;i<tokcount;i++){
 					if(t[i].size >0 && t[i].type==JSMN_STRING){
 					//	printf("i= %d,size: %d, parent : %d \n",i,t[i].size,t[i].parent);
-						nameTokIndex[count]=i;
+						nameTokenInfo[count].tokindex=i;
 						count++;
 					}
 				}
 				}
 				else{
-				nameTokIndex[count]=i;
+				nameTokenInfo[count].tokindex=i;
 				count++;
 			}
 		}
 	}
 	}
 }
-void printNameList(char *JSON_STRING,jsmntok_t *t,int *nameTokIndex){
+void printNameList(char *JSON_STRING,jsmntok_t *t,NameTokenInfo *nameTokenInfo){
 	printf("********NAME LIST******\n");
 	int i=0;
 	int s=0;
 	while(1){
-		if(nameTokIndex[i]==0) break;
-		s=nameTokIndex[i];
+		if(nameTokenInfo[i].tokindex==0) break;
+		s=nameTokenInfo[i].tokindex;
 		printf("[NAME %d] %.*s \n",i+1,t[s].end-t[s].start,JSON_STRING + t[s].start);
 		i++;
 	}
@@ -247,12 +248,12 @@ int main() {
 		printf("Object expected\n");
 		return 1;
 	}
-	int nameIndex[100]={0};
+	NameTokenInfo nameTokenInfo[100]={0};
 	int *objectIndex;  //objectIndex값을 저장하기 위한 포인터-> 배열로사용할것이다.
-	int *OI;
+
 //	jsonNamelist(JSON_STRING,t,r);
-	jsonNamelist2(JSON_STRING,t,r,nameIndex);
-	printNameList(JSON_STRING,t,nameIndex);
+	jsonNamelist2(JSON_STRING,t,r,nameTokenInfo);
+	printNameList(JSON_STRING,t,nameTokenInfo);
 	// selecNameList(JSON_STRING,t,nameIndex);
 	objectNameList(JSON_STRING,t,r,objectIndex);
 	// objectNameList2(JSON_STRING,t,r,objectIndex);
