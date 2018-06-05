@@ -1,0 +1,29 @@
+{
+  "신발":
+    [
+      {
+          "conpany": "ADIDAS",
+          "name": "슈퍼스타 ",
+          "price": 119000,
+          "color": "White"
+        },
+        {
+          "conpany": "CONVERSE",
+          "name": "척테일러 ",
+          "price": 79000,
+          "color": "Yellow"
+        },
+        {
+            "conpany": "VANS",
+            "name": "올드스쿨 ",
+            "price":    59000,
+            "color": "Black"
+        },
+        {
+            "conpany": "FILA",
+            "name": "디스럽터2",
+            "price":    69000,
+            "color": "White"
+        }
+      ]
+}

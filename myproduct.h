@@ -23,17 +23,17 @@ typedef enum {
 } jsmntype_t;
 
 typedef enum {
-	NONGSHIM = 0, //농심
-	PALDO = 1,
-	OTTUGI = 2,
-	SAMYANG = 3,
+	ADIDAS = 0, //아디다스
+	CONVERSE = 1, // 컨버스
+	VANS = 2, // 반스
+	FILA = 3 //휠라
 } company_t;
 
 typedef struct {
 	company_t company; //제조사
 	char name[20]; //제품명
-	int price; // 가격
-	int count; //개수
+	char price[20]; // 가격
+	char color[20]; //색상
 } product_t;
 
 enum jsmnerr {
