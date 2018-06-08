@@ -57,6 +57,21 @@ void printNameList(char *JSON_STRING,jsmntok_t *t,int *nameTokIndex){
 	}
 }
 
+void selecNameList(char *JSON_STRING,jsmntok_t *t,int *nameTokIndex){
+	int i=0;
+	int select;
+	int s=0;
+	while(1){
+	printf("Select Name's no : (exit : 0) \n");
+	scanf("%d",&select);
+	if(select==0) break;
+	s=nameTokIndex[select-1];
+	printf("[NAME %d] %.*s \n",select,t[s].end-t[s].start,JSON_STRING + t[s].start);
+	printf(" %.*s \n",t[s+1].end-t[s+1].start,JSON_STRING + t[s+1].start);
+
+}
+}
+
 int main() {
 	int i;
 	int r;
@@ -80,6 +95,7 @@ int main() {
 
 	jsonNamelist(JSON_STRING,t,r,nameIndex);
 	printNameList(JSON_STRING,t,nameIndex);
+	selecNameList(JSON_STRING,t,nameIndex);
 	/* Loop over all keys of the root object */
 	// for (i = 1; i < r; i++) {
 	// 	if (jsoneq(JSON_STRING, &t[i], "name") == 0) {
