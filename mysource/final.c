@@ -35,15 +35,25 @@ char *readJSONFILE(){
   return JSON_STRING;
 }
 
-void jsonNamelist(char *JSON_STRING,jsmntok_t *t,int tokcount){
+void jsonNamelist(char *JSON_STRING,jsmntok_t *t,int tokcount,int *nameTokIndex){
 	int i;
 	int count=0;
-	printf("*********NAME LIST********\n");
-	for(i=0;i<tokcount;i++){
-		if (t[i].size >0 && t[i].type ==JSMN_STRING){
-			printf("[NAME %d] %.*s \n",count+1,t[i].end-t[i].start,JSON_STRING + t[i].start);
-			count++;
+	for(i=1;i<tokcount+1;i++){
+			if(t[i].size >0 && t[i].type==JSMN_STRING){
+				nameTokIndex[count]=i;
+				count++;
+			}
 	}
+}
+void printNameList(char *JSON_STRING,jsmntok_t *t,int *nameTokIndex){
+	printf("********NAME LIST******\n");
+	int i=0;
+	int s=0;
+	while(1){
+		if(nameTokIndex[i]==0) break;
+		s=nameTokIndex[i];
+		printf("[NAME %d] %.*s \n",i+1,t[s].end-t[s].start,JSON_STRING + t[s].start);
+		i++;
 	}
 }
 
@@ -66,7 +76,10 @@ int main() {
 		printf("Object expected\n");
 		return 1;
 	}
-	jsonNamelist(JSON_STRING,t,r);
+	int nameIndex[100]={0};
+
+	jsonNamelist(JSON_STRING,t,r,nameIndex);
+	printNameList(JSON_STRING,t,nameIndex);
 	/* Loop over all keys of the root object */
 	// for (i = 1; i < r; i++) {
 	// 	if (jsoneq(JSON_STRING, &t[i], "name") == 0) {
