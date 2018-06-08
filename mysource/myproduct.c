@@ -52,10 +52,10 @@ int makeProduct(const char *JSON_STRING, jsmntok_t *t, int tokcount, product_t *
 	key=keyInfo[i];
 	p[i]=(product_t*)malloc(sizeof(product_t));
 	sprintf(s1,"%.*s",t[key+1].end-t[key+1].start,JSON_STRING + t[key+1].start);
-	if(!strcmp(s1,"ADIDAS"))	p[i]->company=ADIDAS;
-	else if(!strcmp(s1,"CONVERSE"))	p[i]->company=CONVERSE;
-	else if(!strcmp(s1,"VANS"))	p[i]->company=VANS;
-	else if(!strcmp(s1,"FILA"))	p[i]->company=FILA;
+	if(strcmp(s1,"ADIDAS")==0)	p[i]->company=ADIDAS;
+	else if(strcmp(s1,"CONVERSE")==0)	p[i]->company=CONVERSE;
+	else if(strcmp(s1,"VANS")==0)	p[i]->company=VANS;
+	else if(strcmp(s1,"FILA")==0)	p[i]->company=FILA;
 	sprintf(p[i]->name,"%.*s",t[key+3].end-t[key+3].start,JSON_STRING + t[key+3].start);
 	sprintf(p[i]->price,"%.*s",t[key+5].end-t[key+5].start,JSON_STRING + t[key+5].start);
 	sprintf(p[i]->color,"%.*s",t[key+7].end-t[key+7].start,JSON_STRING + t[key+7].start);

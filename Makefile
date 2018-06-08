@@ -34,6 +34,9 @@ productlist: mysource/productlist.o libjsmn.a
 myproduct: mysource/myproduct.o libjsmn.a
 				$(CC) $(LDFLAGS) $^ -o $@
 
+final: mysource/final.o libjsmn.a
+								$(CC) $(LDFLAGS) $^ -o $@
+
 jsondump: example/jsondump.o libjsmn.a
 	$(CC) $(LDFLAGS) $^ -o $@
 
@@ -45,4 +48,5 @@ clean:
 	rm -f filesimple_example
 	rm -f productlist
 	rm -f myproduct
+	rm -f final
 .PHONY: all clean test
